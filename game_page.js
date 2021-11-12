@@ -2,8 +2,8 @@ var player1 = localStorage.getItem("player1");
 var player2 = localStorage.getItem("player2");
 var player1_score = 0;
 var player2_score = 0;
-questionTurn = player1;
-answerTurn = player2;
+questionTurn = "player1";
+answerTurn = "player2";
 document.getElementById("player1").innerHTML = player1 + " : " + player1_score;
 document.getElementById("player2").innerHTML = player2 + " : " + player2_score;
 document.getElementById("Question").innerHTML = "Question turn : " + player1;
@@ -39,31 +39,39 @@ function check() {
     inputValue = document.getElementById("Word").value;
     Answer = inputValue.toLowerCase();
     console.log(Answer);
+
     if (Answer == word) {
-        if (questionTurn == player1) {
+        if (questionTurn == "player1") {
             player2_score = player2_score + 1;
             document.getElementById("player2").innerHTML = player2 + " : " + player2_score;
         }
 
-        if (questionTurn == player2) {
+        if (questionTurn == "player2") {
             player1_score = player1_score + 1;
             document.getElementById("player1").innerHTML = player1 + " : " + player1_score;
         }
     }
 
-    if (questionTurn == player1) {
-        questionTurn = player2;
-        answerTurn = player1;
+    if (questionTurn == "player1") {
+        questionTurn = "player2";
         document.getElementById("Question").innerHTML = "Question turn : " + player2;
+    }
+
+    else {
+        questionTurn = "player1";
+        document.getElementById("Question").innerHTML = "Question turn : " + player1;
+    }
+
+    if (answerTurn == "player1") {
+        answerTurn = "player2";
+        document.getElementById("Answer").innerHTML = "Answer turn : " + player2;
+    }
+
+    else {
+        answerTurn = "player1";
         document.getElementById("Answer").innerHTML = "Answer turn : " + player1;
     }
 
-    if (questionTurn == player2) {
-        questionTurn = player1;
-        answerTurn = player2;
-        document.getElementById("Question").innerHTML = "Question turn : " + player1;
-        document.getElementById("Answer").innerHTML = "Answer turn : " + player2;
-    }
     document.getElementById("output").innerHTML = "";
     document.getElementById("word").innerHTML = "";
 }
